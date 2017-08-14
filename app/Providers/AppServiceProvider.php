@@ -28,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->configure('multisite');
         $this->app->configure('mail');
 
+        $this->app->singleton('datasources', function () {
+            return $this->app->loadComponent('datasources', \Ushahidi\App\DataSource\DataSourceServiceProvider::class, 'datasources');
+        });
+
         $this->configureAuraDI();
     }
 
